@@ -7,7 +7,7 @@ response = requests.get(blog_url)
 posts = response.json()
 post_objects = []
 for post in posts:
-    post_obj = Post(post["id"], post["title"], post["subtitle"], post["body"])
+    post_obj = Post(post["id"], post["title"], post["subtitle"], post["body"])  # Post 클래스에 설정한 형태로 저장
     post_objects.append(post_obj)
 
 app = Flask(__name__)
@@ -20,7 +20,7 @@ def get_all_posts():
 def show_post(index):
     requested_post = None
     for blog_post in post_objects:
-        if blog_post.id == index:
+        if blog_post.id == index:                # Post 클래스 내용을 반복할 때 개체 선택은 .id .title 과 같이 
             requested_post = blog_post
     return render_template("post.html", post= requested_post)
 
